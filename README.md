@@ -8,4 +8,4 @@ dotnet add package System.Data.Odbc
 dotnet remove package System.Data.Odbc
 
 ## インストール場所
-"C:\Users\%username%\.nuget\packages"
+"C:\Users\\%username%\.nuget\packages"

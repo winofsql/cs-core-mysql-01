@@ -44,7 +44,6 @@ namespace cs_core_mysql_01
 
             // 次でする、データベースの値をもらう為のオブジェクトの変数の定義
             OdbcDataReader myReader;
-
             // SELECT を実行した結果を取得
             myReader = myCommand.ExecuteReader();
 
@@ -54,9 +53,27 @@ namespace cs_core_mysql_01
                 // 列名より列番号を取得
                 int index = myReader.GetOrdinal("氏名");
                 // 列番号で、値を取得して文字列化
-                string text = myReader.GetValue(index).ToString();
+                string text;
+                if ( myReader.IsDBNull(index)  ) {
+                    text = "";
+                }
+                else {
+                    text = myReader.GetValue(index).ToString();
+                }
+                // コンソールに出力
+                Console.Write(text + " : ");
+
+                index = myReader.GetOrdinal("手当");
+                // 列番号で、値を取得して文字列化
+                if ( myReader.IsDBNull(index)  ) {
+                    text = "---";
+                }
+                else {
+                    text = myReader.GetValue(index).ToString();
+                }
                 // コンソールに出力
                 Console.WriteLine(text);
+
             }
 
             myReader.Close();
